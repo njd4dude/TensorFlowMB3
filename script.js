@@ -28,11 +28,11 @@ async function run() {
   console.log("actual data.length", data.length);
   const values = data;
   tfvis.render.scatterplot(
-    { name: "Horsepower v MPG" },
+    { name: "Multiply by 3" },
     { values },
     {
-      xLabel: "Horsepower",
-      yLabel: "MPG",
+      xLabel: "X",
+      yLabel: "Y",
       height: 300,
     }
   );
@@ -88,8 +88,6 @@ function convertToTensor(data) {
     tf.util.shuffle(data);
 
     // Step 2. Convert data to Tensor
-    // const inputs = data.map((d) => d.horsepower);
-    // const labels = data.map((d) => d.mpg);
     const inputs = data.map((d) => d.x);
     const labels = data.map((d) => d.y);
     const inputTensor = tf.tensor2d(inputs, [inputs.length, 1]);
@@ -191,8 +189,8 @@ function testModel(model, inputData, normalizationData) {
       series: ["original", "predicted"],
     },
     {
-      xLabel: "Horsepower",
-      yLabel: "MPG",
+      xLabel: "X",
+      yLabel: "Y",
       height: 300,
     }
   );
